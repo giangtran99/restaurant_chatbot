@@ -1,0 +1,15 @@
+2020-09-15 15:00:55,771 [INFO ]  Starting Rasa server on http://localhost:5005
+2020-09-15 15:01:03,908 [INFO ]  Rasa server is up and running.
+2020-09-15 15:02:53,020 [ERROR]  Exception occurred while handling uri: unknown
+NoneType: None
+2020-09-15 15:02:53,271 [ERROR]  Exception occurred while handling uri: unknown
+NoneType: None
+2020-09-15 15:11:03,874 [ERROR]  Exception occurred while handling uri: 'http://localhost:5005/conversations/%7Bconversation_id%7D/trigger_intent'
+Traceback (most recent call last):
+  File "c:\users\thg60\venv\lib\site-packages\sanic\app.py", line 940, in handle_request
+    handler, args, kwargs, uri, name = self.router.get(request)
+  File "c:\users\thg60\venv\lib\site-packages\sanic\router.py", line 411, in get
+    return self._get(request.path, request.method, "")
+  File "c:\users\thg60\venv\lib\site-packages\sanic\router.py", line 474, in _get
+    raise method_not_supported
+sanic.exceptions.MethodNotSupported: Method GET not allowed for URL /conversations/{conversation_id}/trigger_intent

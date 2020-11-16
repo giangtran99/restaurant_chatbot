@@ -1,0 +1,48 @@
+intents:
+  - greet
+  - goodbye
+  - affirm
+  - deny
+  - mood_great
+  - happy
+  - unhappy
+  - chitchat
+  - cheer_up
+  - faq 
+
+responses:
+  utter_greet:
+   - text: Chào bạn.Chào mừng quý khách đã đến với nhà hàng lẩu MTee Ay
+  utter_goodbye:
+   - text: Chào bạn. Hẹn gặp lại
+  utter_affirm:
+   - text: Ok bạn !
+  utter_deny:
+   - text: Dạ vâng ạ !
+  utter_mood_great:
+   - text: Cảm ơn bạn
+  utter_happy:
+   - text: Rất vui được làm hài lòng quý khách ! 
+  utter_unhappy:
+   - text: Xin lỗi đã làm phiền bạn. Nhà hàng sẽ cố gắng hoàn thiện dịch vụ để phục vụ mọi người tốt hơn !
+  utter_cheer_up:
+   - text: Vâng mình sẽ cố gắng cải thiện
+  utter_default:
+   - text: Mình chưa hiểu ý bạn! Bạn nói rõ hơn cho mình với ạ.
+   
+actions:
+   - respond_faq
+   - respond_chitchat
+   - utter_greet
+   - utter_goodbye
+   - utter_affirm
+   - utter_deny
+   - utter_mood_great
+   - utter_happy
+   - utter_unhappy
+   - utter_cheer_up
+   - utter_default
+
+session_config:
+  session_expiration_time: 60
+  carry_over_slots_to_new_session: true
