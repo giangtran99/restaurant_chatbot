@@ -59,7 +59,7 @@
 - [coca](food) bao nhiêu 1 chai bạn ơi
 - [lavie](food) chai nhiu
 
-## inten:order
+## intent:order
 
 - Lấy anh [lẩu dầu cay không vụn](food) đi
 - Anh đặt một phần [lẩu cay không vụn](food)

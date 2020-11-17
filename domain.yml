@@ -9,10 +9,10 @@ intents:
   - chitchat
   - cheer_up
   - faq 
-  - hoi_gia_lau
+  - hoi_gia_do_an
 
 entities:
-  - hot_pot
+  - food
 slots:
    food :
     type : text
@@ -51,7 +51,7 @@ actions:
    - utter_unhappy
    - utter_cheer_up
    - utter_default
-   - answer_price_hotpot
+   - answer_price_food
 
 session_config:
   session_expiration_time: 60

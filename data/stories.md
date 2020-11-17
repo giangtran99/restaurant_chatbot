@@ -25,10 +25,6 @@
   - answer_price_food
 
 
-## order
-* order
-  - answer_order
-
 ## FAQ
 * faq
    - respond_faq
