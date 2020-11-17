@@ -20,6 +20,15 @@
 * out_of_scope
   - action_default_fallback
 
+## ask_price_food
+* hoi_gia_do_an
+  - answer_price_food
+
+
+## order
+* order
+  - answer_order
+
 ## FAQ
 * faq
    - respond_faq
