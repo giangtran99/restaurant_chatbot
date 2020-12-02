@@ -21,9 +21,8 @@
   - action_default_fallback
 
 ## ask_price_food
-* hoi_gia_do_an
+* ask_price_food
   - answer_price_food
-
 
 ## FAQ
 * faq
@@ -32,4 +31,22 @@
 ## CHITCHAT
 * chitchat
    - respond_chitchat
+
+## ORDER 
+* order
+   - order_food
+
+## ASK_FOOD_ORDER
+* ask_food_in_order
+   - answer_food_in_order
+   - slot{"ListOrder": "Cá basa phi lê \nThịt bò bông tuyết Mỹ"}
+
+## ASK_TOTAL_ORDER
+* ask_total_order
+   - answer_total_order
+   - slot{"totalOrder": 210}
+
+## SEARCH_FOOD
+* search_food
+   - answer_search_food
 

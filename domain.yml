@@ -9,7 +9,11 @@ intents:
   - chitchat
   - cheer_up
   - faq 
-  - hoi_gia_do_an
+  - ask_price_food
+  - order
+  - ask_food_in_order
+  - ask_total_order
+  - search_food
 
 entities:
   - food
@@ -18,6 +22,12 @@ slots:
     type : text
    menu:
     type : text
+   name:
+    type : text
+   listOrder:
+    type : list
+   totalOrder:
+    type:  float
 
 responses:
   utter_greet:
@@ -40,6 +50,7 @@ responses:
    - text: Mình chưa hiểu ý bạn! Bạn nói rõ hơn cho mình với ạ.
    
 actions:
+
    - respond_faq
    - respond_chitchat
    - utter_greet
@@ -52,6 +63,10 @@ actions:
    - utter_cheer_up
    - utter_default
    - answer_price_food
+   - order_food
+   - answer_food_in_order
+   - answer_total_order
+   - answer_search_food
 
 session_config:
   session_expiration_time: 60
