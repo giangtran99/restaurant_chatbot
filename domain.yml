@@ -14,20 +14,28 @@ intents:
   - ask_food_in_order
   - ask_total_order
   - search_food
+  - remove_food_in_order
+  - out_of_scope
 
 entities:
+
   - food
+  - quanity
+
 slots:
-   food :
-    type : text
-   menu:
-    type : text
+
+   quanity:
+    type : list
+   food:
+    type : list
    name:
     type : text
    listOrder:
     type : list
    totalOrder:
-    type:  float
+    type : float
+ 
+  
 
 responses:
   utter_greet:
@@ -67,6 +75,7 @@ actions:
    - answer_food_in_order
    - answer_total_order
    - answer_search_food
+   - action_remove_food_in_order
 
 session_config:
   session_expiration_time: 60

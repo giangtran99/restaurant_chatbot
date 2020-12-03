@@ -57,8 +57,8 @@
 - Coi biểu diển [múa mì](food) hết nhiêu thế
 - Giá [thịt bò nhật](food) bên bạn bán bao nhiêu
 - mình muốn biết giá [cá basa phi lê](food) 
-- [coca](food) bao nhiêu 1 chai bạn ơi
-- một chai [lavie](food) nhiu bạn
+- [coca](food) bao nhiêu 1 chai con ơi
+- một chai [lavie](food) nhiu em
 
 ## intent: ask_total_order
 
@@ -82,7 +82,22 @@
 - Không biết bên bạn có [cá basa phi lê](food) 
 - Có [coca](food) không
 - Có [lavie](food) chứ em
+
 ## intent:remove_food_in_order
+
+- Thôi mình không ăn [lẩu dầu cay không vụn](food) nữa đâu
+- Bỏ [lẩu cay không vụn](food) cho mình nhé
+- Không ăn [lẩu vụn](food) nữa nhé
+- Mình bị dị ứng [lẩu dầu cay](food) nên không ắn nữa
+- Bỏ mình [lẩu cay mala](food)
+- Thôi không lấy món [lẩu mala](food)
+- Bỏ [lẩu thảo dược](food) giúp chứ
+- Chú bị dị ứng không ăn [thịt bò bông tuyết mỹ](food)
+- Thôi anh không xem [múa mì](food) nha
+- Thôi đừng lấy [thịt bò nhật](food) 
+- Mình không ăn [cá basa phi lê](food) nữa nhé 
+- Thôi không uống [coca](food) 
+- Thôi mình không uống [lavie](food) nhiu bạn
 
 ## intent:ask_food_in_order
 
@@ -94,22 +109,24 @@
 ## intent:order
 
 - Lấy anh [lẩu dầu cay không vụn](food) đi
-- Anh đặt một phần [lẩu cay không vụn](food)
-- Lấy anh một [lẩu dầu cay](food) nhé ?
-- Cho mình một [coca](food)
-- Cho mình một [Lavie](food)
-- Thêm một phần [lẩu thảo dược](food) em ơi ?
-- Thêm 1 phần [thịt bò bông tuyết mỹ](food) nữa nhé
+- Anh đặt [hai](quanity) phần [lẩu cay không vụn](food)
+- Lấy anh [ba](quanity) [lẩu dầu cay](food) nhé ?
+- Cho mình [bốn](quanity) [coca](food)
+- Cho mình [năm](quanity) [Lavie](food)
+- Thêm [một](quanity) phần [lẩu thảo dược](food) em ơi ?
+- Thêm [sáu](quanity) phần [thịt bò bông tuyết mỹ](food) nữa nhé
 - Cho nhân viên ra [múa mì](food) cho mình nhé
-- Lấy mình 1 suất [thịt bò nhật](food) nhé
-- Cho cô 1 phần [cá basa phi lê](food) 
-- Tôi muốn 1 chai [coca](food)
-- Em muốn 1 chai [lavie](food)
+- Lấy mình [bảy](quanity) suất [thịt bò nhật](food) nhé
+- Cho cô [tám](quanity) phần [cá basa phi lê](food) 
+- Tôi muốn [chín](quanity) lon [coca](food)
+- Em muốn [mười](quanity) chai [lavie](food)
 - Mình muốn đặt một [lẩu dầu cay không vụn](food)
-- Cho mình một [coca](food) với một phần [thịt bò nhật](food) luôn nhé
+- Cho mình [một](quanity) [coca](food) với [hai](quanity) phần [thịt bò nhật](food) luôn nhé
 - Lấy mình một đĩa [thịt bò mỹ](food) và [thịt bò bông tuyết mỹ](food) cả một lon [coca](food) nhé
+- Tôi muốn [một](quanity) lon [coca](food) với [hai](quanity) chai [lavie](food)
 
 ## intent:chitchat/hoi_ten_bot
+
 - mày là ai ?
 - tên bạn là gì ?
 - cho tôi biết bạn là ai ?
@@ -123,11 +140,11 @@
 - bạn là chatbot à ?
   
 ## intent:faq/hoi_menu
-- Cho mình xin cái [menu](menu) nhà hàng được không ạ ?
+- Cho mình xin cái menu nhà hàng được không ạ ?
 - Bên bạn có những món gì nhỉ?
 - Menu bên nhà hàng bạn có những món gì ạ ?
-- Cho mình xem [danh sách món ăn](menu)
-- [thực đơn](menu) nhà hàng mình có gì nhỉ ?
+- Cho mình xem menu
+- menu nhà hàng mình có gì nhỉ ?
 
 ## intent:faq/hoi_dia_chi
 - Quán mình địa chỉ ở đâu bạn nhỉ ?
@@ -135,4 +152,7 @@
 - Quán ở đâu ?
 - Quán mình gần đây không ?
 - Quán mình ở X phải không nhỉ ?
+- địa chỉ nhà hàng ở đâu nhỉ
+
+
 

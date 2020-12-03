@@ -36,10 +36,14 @@
 * order
    - order_food
 
+## REMOVE ORDER
+* remove_food_in_order
+   - action_remove_food_in_order
+
 ## ASK_FOOD_ORDER
 * ask_food_in_order
    - answer_food_in_order
-   - slot{"ListOrder": "Cá basa phi lê \nThịt bò bông tuyết Mỹ"}
+   - slot{"listOrder": "Cá basa phi lê \nThịt bò bông tuyết Mỹ"}
 
 ## ASK_TOTAL_ORDER
 * ask_total_order

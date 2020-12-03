@@ -50,6 +50,8 @@ class ActionAnswerPriceFood(Action):
             tracker: Tracker,
             domain: Dict[Text, Any]) -> List[Dict[Text, Any]]:
         food = str(tracker.get_slot('food'))
+        if food is None:
+            dispatcher.utter_message("Nhà hàng mình không có món kia bạn ạ") 
 
         Max = SequenceMatcher(a=food, b="Lẩu dầu cay không vụn").ratio()
 
@@ -75,33 +77,76 @@ class ActionAnswerPriceFood(Action):
         return []
 
 
+def ConvertNumber(number):
+    convert = {
+  "một": 1,
+  "hai": 2,
+  "ba": 3,
+  "bốn": 4,
+  "năm": 5,
+  "sáu": 6,
+  "bảy": 7,
+  "tám": 8,
+  "chín": 9,
+  "mười": 10,
+
+}
+    return convert[number]
+
+
 class OrderFood(Action):
 
-
-    
     def name(self) -> Text:
         return "order_food"
 
     def run(self, dispatcher: CollectingDispatcher,
             tracker: Tracker,
             domain: Dict[Text, Any]) -> List[Dict[Text, Any]]:
-        food = str(tracker.get_slot('food'))
-        Max = SequenceMatcher(a=food, b="Lẩu dầu cay không vụn").ratio()
-        food = tracker.get_slot('food')
 
+        food = tracker.get_slot('food') # Chứa các món trong cầu người dùng
+        quanity = tracker.get_slot('quanity')
+        jsonOrder = tracker.get_slot('listOrder') # Chứa các món trong order người dùng
+        tOrder = tracker.get_slot('totalOrder')
+
+
+        ## Nếu kiểm tra món ăn không tồn tại trong thực đơn
         if food is None:
             dispatcher.utter_message("Dạ bên mình không có món này bạn ạ") 
-            return
-       
-        for item in Menu():
-            temp = SequenceMatcher(a=food, b=item.name).ratio()
-            if temp >= Max:
-                Max = temp
-                max_food = Food(item.name, item.price, item.type,0)
+            return []
+        
+        print(food)
+        print(quanity)
+        print(len(food),len(quanity))
+        ## Kiểm trả số lượng món ăn đã đủ chưa
+        if len(food) > len(quanity):
+            food_not_quanity = ""
+            i = len(quanity) -1
+            end = len(food) -1
 
-        jsonOrder = tracker.get_slot('listOrder')
-        print(jsonOrder)
-        tOrder = tracker.get_slot('totalOrder')
+            while i<end:
+                i+=1
+                food_not_quanity+=food[i]["name"] + " "
+
+            dispatcher.utter_message("Bạn cho mình xin số lượng bạn muốn lấy "+food_not_quanity+ " với ạ !") 
+            return []
+       
+
+        ## Đổi chứ sáng số
+        nQuanity = []
+        for item in quanity:
+            nQuanity.append(ConvertNumber(item.lower()))
+     
+        Max = SequenceMatcher(a=food[0], b="Lẩu dầu cay không vụn").ratio()
+        list_max_food = []
+        for element in food:
+             for item in Menu():
+                temp = SequenceMatcher(a=element, b=item.name).ratio()
+                if temp >= Max:
+                    Max = temp
+                    max_food= Food(item.name, item.price, item.type,item.quanity)               
+             list_max_food.append(max_food)    
+
+        
         lOrder = [] 
 
         if tOrder is None or jsonOrder is None or lOrder is None:
@@ -110,10 +155,18 @@ class OrderFood(Action):
             jsonOrder = '[]'
 
         lOrder = json.loads(jsonOrder)
-        tOrder+= max_food.price
-        lOrder.append(max_food.__dict__)
+        count =0
+        for element in list_max_food:
+            tOrder+= (element.price*nQuanity[count])
+            element.quanity = nQuanity[count]
+            count+=1
+            lOrder.append(element.__dict__)
+
+                 
         jsonOrder = json.dumps([item for item in lOrder])
         
+        SlotSet("food","")
+        SlotSet("quanity","")
 
         dispatcher.utter_message("Mình đã xác nhận đặt món cho bạn rồi nhé. Bạn muốn đặt gì thêm không ?")
         return [SlotSet("listOrder",jsonOrder),SlotSet("totalOrder", tOrder)]
@@ -128,11 +181,16 @@ class AnswerOrderFood(Action):
             domain: Dict[Text, Any]) -> List[Dict[Text, Any]]:
 
         jsonOrder = tracker.get_slot('listOrder')
+        if jsonOrder is None:
+            dispatcher.utter_message("Bạn chưa đặt món nào cả !")  
+            return [] 
+
         lOrder = json.loads(jsonOrder)
         result = ""
+       
 
         for item in lOrder:
-            result+= "\n"+"(*) "+item["name"]+" - Số lượng: "+item["quanity"]
+            result+= "\n"+"(*) "+item["name"]+" - Số lượng: "+str(item["quanity"])
         dispatcher.utter_message("Danh sách món bạn đã đặt :") 
         dispatcher.utter_message(result)   
             
@@ -152,7 +210,7 @@ class AnswerOrderFoodv2(Action):
         if totalOrder is None:
             dispatcher.utter_message("Bạn chưa đặt món mà :D") 
         else:
-            dispatcher.utter_message("Dạ tổng của anh hết: "+str(totalOrder)+ "k ạ !")  
+            dispatcher.utter_message("Dạ tổng hóa đơn hiện tại của bạn hết: "+str(totalOrder)+ "k ạ !")  
         return []
 
 class AnswerOrderFoodv3(Action):
@@ -163,9 +221,42 @@ class AnswerOrderFoodv3(Action):
     def run(self, dispatcher: CollectingDispatcher,
             tracker: Tracker,
             domain: Dict[Text, Any]) -> List[Dict[Text, Any]]:
+        
+        food = str(tracker.get_slot('food'))
+        jsonOrder = tracker.get_slot('listOrder')
+        tOrder = tracker.get_slot('totalOrder')
 
-       
-        return []
+        if jsonOrder is None or tOrder is None:
+            dispatcher.utter_message("Bạn chưa đặt món nào cả :D") 
+            return
+
+        if food is None:
+            dispatcher.utter_message("Nhà hàng mình làm gì có món kia bạn ơi") 
+            return
+
+        Max = SequenceMatcher(a=food, b="Lẩu dầu cay không vụn").ratio()
+
+        for item in Menu():
+            temp = SequenceMatcher(a=food, b=item.name).ratio()
+            if temp >= Max:
+                Max = temp
+                max_food = Food(item.name, item.price, item.type,item.quanity)
+
+        
+        print(max_food.name)
+        lOrder = json.loads(jsonOrder)
+
+        
+        for item in lOrder:
+            if item["name"] == max_food.name:
+                tOrder-=(item["price"]*item["quanity"])
+                lOrder.remove(item)
+
+        jsonOrder = json.dumps([item for item in lOrder]) 
+        dispatcher.utter_message("Mình đã bỏ "+max_food.name+" cho bạn rồi nhé !") 
+
+        return [SlotSet("listOrder",jsonOrder),SlotSet("totalOrder", tOrder)]
+
 
 class SearchFood(Action):
        
