@@ -1,10 +1,12 @@
 ## hoi ten bot
 * chitchat/hoi_ten_bot
     - Mình là MTeeAy Bot
+    - I'm MTAbot 
 
 ## hoi thong tin bot
 * chitchat/hoi_thong_tin_bot
     - Tôi là chatbot được tạo ra để trả lời những thắc mắc của khách về các món ăn,dịch vụ,...của nhà hàng
+    - Để làm bài tập lớn
 
 ## hoi menu
 * faq/hoi_menu

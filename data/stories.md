@@ -15,14 +15,13 @@
   - utter_cheer_up
 * goodbye
   - utter_goodbye
+* ask_view_restaurant
+  - utter_ask_view_restaurant
+
 
 ## fallback story
 * out_of_scope
   - action_default_fallback
-
-## ask_price_food
-* ask_price_food
-  - answer_price_food
 
 ## FAQ
 * faq
@@ -32,18 +31,19 @@
 * chitchat
    - respond_chitchat
 
+## ask_price_food
+* ask_price_food
+  - answer_price_food
+
 ## ORDER 
 * order
    - order_food
-
-## REMOVE ORDER
-* remove_food_in_order
-   - action_remove_food_in_order
+   - slot{"food": "coca"}
+   - slot{"quanity": "một"}
 
 ## ASK_FOOD_ORDER
 * ask_food_in_order
    - answer_food_in_order
-   - slot{"listOrder": "Cá basa phi lê \nThịt bò bông tuyết Mỹ"}
 
 ## ASK_TOTAL_ORDER
 * ask_total_order
@@ -53,4 +53,21 @@
 ## SEARCH_FOOD
 * search_food
    - answer_search_food
+
+## REMOVE ORDER
+* remove_food_in_order
+   - action_remove_food_in_order
+   - slot{"food": "coca"}
+
+## order food story
+* greet
+  - utter_greet
+* ask_price_food
+  - answer_price_food
+* order
+   - order_food
+* ask_food_in_order
+   - answer_food_in_order
+* goodbye
+  - utter_goodbye
 

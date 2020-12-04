@@ -16,27 +16,22 @@ intents:
   - search_food
   - remove_food_in_order
   - out_of_scope
+  - ask_view_restaurant
 
 entities:
-
   - food
   - quanity
 
 slots:
-
    quanity:
     type : list
    food:
     type : list
-   name:
-    type : text
    listOrder:
-    type : list
+    type : unfeaturized
    totalOrder:
-    type : float
- 
+    type : unfeaturized
   
-
 responses:
   utter_greet:
    - text: Chào bạn.Chào mừng quý khách đã đến với nhà hàng lẩu MTee Ay
@@ -54,11 +49,14 @@ responses:
    - text: Xin lỗi đã làm phiền bạn. Nhà hàng sẽ cố gắng hoàn thiện dịch vụ để phục vụ mọi người tốt hơn !
   utter_cheer_up:
    - text: Vâng mình sẽ cố gắng cải thiện
+     image: "https://i.imgur.com/nGF1K8f.jpg"
   utter_default:
    - text: Mình chưa hiểu ý bạn! Bạn nói rõ hơn cho mình với ạ.
-   
+  utter_ask_view_restaurant:
+   - text: Đây là không gian quán ạ
+     image: "https://www.upsieutoc.com/images/2020/12/04/dau-thang-choi-lon-an-8-quan-lau-sang-chanh-hap-dan-vuot-troi-gay-bao-dan-sanh-an-ccc9722e636954273665456460.jpg"
 actions:
-
+   - utter_ask_view_restaurant
    - respond_faq
    - respond_chitchat
    - utter_greet
