@@ -17,6 +17,7 @@ intents:
   - remove_food_in_order
   - out_of_scope
   - ask_view_restaurant
+  - ask_info_food
 
 entities:
   - food
@@ -36,20 +37,21 @@ responses:
   utter_greet:
    - text: Chào bạn.Chào mừng quý khách đã đến với nhà hàng lẩu MTee Ay
   utter_goodbye:
-   - text: Chào bạn. Hẹn gặp lại
+   - text: Chào bạn. Hẹn gặp lại !
   utter_affirm:
-   - text: Ok bạn !
+   - text: Ok rồi nhé bạn !
   utter_deny:
    - text: Dạ vâng ạ !
   utter_mood_great:
    - text: Cảm ơn bạn
   utter_happy:
    - text: Rất vui được làm hài lòng quý khách ! 
+   - text: Dạ em cảm ơn ạ :D
+   - text: Cảm ơn bạn nhiều ! Lần sau lại đến nhà hàng mình tiếp nhé :D
   utter_unhappy:
    - text: Xin lỗi đã làm phiền bạn. Nhà hàng sẽ cố gắng hoàn thiện dịch vụ để phục vụ mọi người tốt hơn !
   utter_cheer_up:
-   - text: Vâng mình sẽ cố gắng cải thiện
-     image: "https://i.imgur.com/nGF1K8f.jpg"
+   - text: Vâng mình sẽ tiếp thu góp ý của ban và cố gắng cải thiện chất lượng nhà hàng tốt hơn
   utter_default:
    - text: Mình chưa hiểu ý bạn! Bạn nói rõ hơn cho mình với ạ.
   utter_ask_view_restaurant:
@@ -69,6 +71,7 @@ actions:
    - utter_cheer_up
    - utter_default
    - answer_price_food
+   - answer_info_food
    - order_food
    - answer_food_in_order
    - answer_total_order

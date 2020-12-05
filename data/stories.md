@@ -34,6 +34,12 @@
 ## ask_price_food
 * ask_price_food
   - answer_price_food
+  - slot{"food": "coca"}
+
+## ask_info_food
+* ask_info_food
+  - answer_info_food
+  - slot{"food": "coca"}
 
 ## ORDER 
 * order
@@ -44,6 +50,7 @@
 ## ASK_FOOD_ORDER
 * ask_food_in_order
    - answer_food_in_order
+   - slot{"listOrder": "[]"}
 
 ## ASK_TOTAL_ORDER
 * ask_total_order
@@ -53,6 +60,7 @@
 ## SEARCH_FOOD
 * search_food
    - answer_search_food
+   - slot{"food": "coca"}
 
 ## REMOVE ORDER
 * remove_food_in_order

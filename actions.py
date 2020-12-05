@@ -20,15 +20,15 @@ import json
 
 def Menu():
     mylist = []
-    f1 = Food("Lẩu dầu cay không vụn", 200, "hotpot",0)
-    f2 = Food("Lẩu cay mala", 250, "hotpot",0)
-    f3 = Food("Lẩu thảo dược", 230, "hotpot",0)
-    f4 = Food("Thịt bò bông tuyết Mỹ", 140, "beef",0)
-    f5 = Food("Thịt bò Nhật", 75, "beef",0)
-    f6 = Food("Cá basa phi lê", 70, "food",0)
-    f7 = Food("Múa mì", 20, "special",0)
-    f8 = Food("Coca", 230, "drink",0)
-    f9 = Food("Lavie", 230, "drink",0)
+    f1 = Food("Lẩu dầu cay không vụn", 200, "hotpot",0,"Lẩu dầu cay là hương vị truyền thống ở Haidilao, tuy nhiên, nước lẩu này khá cay, nhiều dầu và gia vị, các bạn không quen ăn đồ Trung Quốc và ăn được ít cay thì nên cân nhắc ")
+    f2 = Food("Lẩu cay mala", 250, "hotpot",0,"Dạ trong tiếng Trung, 'ma' là tê , 'la' là cay, Mala tức là cay đến tê người.Lẩu cay thơm từ hạt ngò, thảo quả, kỳ tử,… ")
+    f3 = Food("Lẩu thảo dược", 230, "hotpot",0,"Lẩu thảo dược được nầu từ nguyên liệu là các thảo dược Trung Hoa rất tốt cho sức khỏe ạ")
+    f4 = Food("Thịt bò bông tuyết Mỹ", 140, "beef",0,"Thịt bò bên em được nhập khẩu đạt chất lượng của Mỹ nha anh")
+    f5 = Food("Thịt bò Nhật", 75, "beef",0,"Thịt bò bên em được nhập khẩu đạt chất lượng của Nhật nha anh")
+    f6 = Food("Cá basa phi lê", 70, "food",0,"Dạ cá basa bên em nhập nguyên con từ vùng biển rất tươi và thơm ạ")
+    f7 = Food("Múa mì", 20, "special",0,"")
+    f8 = Food("Coca", 20, "drink",0,"")
+    f9 = Food("Lavie", 10, "drink",0,"")
     mylist.append(f1)
     mylist.append(f2)
     mylist.append(f3)
@@ -39,7 +39,6 @@ def Menu():
     mylist.append(f8)
     mylist.append(f9)
     return mylist
-
 
 class ActionAnswerPriceFood(Action):
 
@@ -61,7 +60,7 @@ class ActionAnswerPriceFood(Action):
             temp = SequenceMatcher(a=food, b=item.name).ratio()
             if temp >= Max:
                 Max = temp
-                max_food = Food(item.name, item.price, item.type,0)
+                max_food = Food(item.name, item.price, item.type,item.quanity,item.info)
 
         if max_food.type == "beef":
             dispatcher.utter_message(
@@ -78,6 +77,29 @@ class ActionAnswerPriceFood(Action):
 
         return [SlotSet("food",None)]
 
+class ActionAnswerInfoFood(Action):
+
+    def name(self) -> Text:
+        return "answer_info_food"
+
+    def run(self, dispatcher: CollectingDispatcher,
+            tracker: Tracker,
+            domain: Dict[Text, Any]) -> List[Dict[Text, Any]]:
+
+        print("answer_info_food")
+        food = str(tracker.get_slot('food'))
+        if food is None:
+            dispatcher.utter_message("Nhà hàng mình không có món kia bạn ạ") 
+
+        Max = SequenceMatcher(a=food, b="Lẩu dầu cay không vụn").ratio()
+        for item in Menu():
+            temp = SequenceMatcher(a=food, b=item.name).ratio()
+            if temp >= Max:
+                Max = temp
+                max_food = Food(item.name, item.price, item.type,item.quanity,item.info)
+
+        dispatcher.utter_message(max_food.info)
+        return [SlotSet("food",None)]
 
 def ConvertNumber(number):
     convert = {
@@ -90,11 +112,8 @@ def ConvertNumber(number):
   "bảy": 7,
   "tám": 8,
   "chín": 9,
-  "mười": 10,
-
-}
+  "mười": 10,}
     return convert[number]
-
 
 class OrderFood(Action):
 
@@ -119,6 +138,7 @@ class OrderFood(Action):
         rs =""  
         for item in food:
             rs+=item + ","
+            
         if quanity is None:
         ## Kiểm tra không có số lượng
             dispatcher.utter_message("Bạn lấy "+rs+" số lượng thế nào ạ ?")
@@ -149,7 +169,7 @@ class OrderFood(Action):
                 temp = SequenceMatcher(a=element, b=item.name).ratio()
                 if temp >= Max:
                     Max = temp
-                    max_food= Food(item.name, item.price, item.type,item.quanity)   
+                    max_food= Food(item.name, item.price, item.type,item.quanity,item.info)   
 
              Max = SequenceMatcher(a="a", b="b").ratio()
              list_max_food.append(max_food)   
@@ -170,7 +190,10 @@ class OrderFood(Action):
             lOrder.append(element.__dict__)
       
         jsonOrder = json.dumps([item for item in lOrder])
-        dispatcher.utter_message("Mình đã xác nhận đặt món cho bạn rồi nhé. Bạn muốn đặt gì thêm không ?")
+        dispatcher.utter_message("Mình thêm vào order của bạn rồi nhé.")
+        buttons = [{"title": "Xác nhận", "payload": "/affirm"}]
+        dispatcher.utter_button_message("Nhấn xác nhận để mình gửi order cho bên bếp chuẩn bị cho bạn nhé", buttons)
+
         return [SlotSet("listOrder",jsonOrder),SlotSet("totalOrder", tOrder),SlotSet("food",None),SlotSet("quanity",None)]
 
 class AnswerOrderFood(Action):
@@ -243,7 +266,7 @@ class AnswerOrderFoodv3(Action):
             temp = SequenceMatcher(a=food, b=item.name).ratio()
             if temp >= Max:
                 Max = temp
-                max_food = Food(item.name, item.price, item.type,item.quanity)
+                max_food = Food(item.name, item.price, item.type,item.quanity,item.info)
         
         lOrder = json.loads(jsonOrder)
         print(len(lOrder))
