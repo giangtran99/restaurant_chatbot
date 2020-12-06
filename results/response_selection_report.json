@@ -1,0 +1,62 @@
+{
+  "Tôi là chatbot được tạo ra để trả lời những thắc mắc của khách về các món ăn,dịch vụ,...của nhà hàng": {
+    "precision": 1.0,
+    "recall": 1.0,
+    "f1-score": 1.0,
+    "support": 3,
+    "confused_with": {}
+  },
+  "Dạ bên em có 2 hình thức thanh toán là \n1/ Thanh toán trực tiếp tại quầy \n2/ Thanh toán qua ví điện tử ZaloPay với AirPay ạ.": {
+    "precision": 1.0,
+    "recall": 1.0,
+    "f1-score": 1.0,
+    "support": 6,
+    "confused_with": {}
+  },
+  "Mình là MTeeAy Bot": {
+    "precision": 1.0,
+    "recall": 1.0,
+    "f1-score": 1.0,
+    "support": 5,
+    "confused_with": {}
+  },
+  "Dạ một bữa ăn lẩu bên em có giá trung bình từ 300k-400k/1 người ạ !": {
+    "precision": 1.0,
+    "recall": 1.0,
+    "f1-score": 1.0,
+    "support": 12,
+    "confused_with": {}
+  },
+  "Dạ quán em có 2 chi nhánh Tại Hà Nội: Vincom Phạm Ngọc Thạch, 2 Phạm Ngọc Thạch, P.Trung Tự Quận Đống Đa, Hà Nội và Tại Hồ Chi Minh: Ngô Đức Kế, Bến Nghé, Quận 1, Thành phố Hồ Chí Minh": {
+    "precision": 1.0,
+    "recall": 1.0,
+    "f1-score": 1.0,
+    "support": 8,
+    "confused_with": {}
+  },
+  "* LẨU: \nLẩu dầu cay không vụn:200k\nLẩu dầu cay mala:250k\nLẩu thảo dược 230k\n * MÓN MẶN: \nThịt bò bông tuyết Mỹ:140k/100g\nThịt bò Nhật:75k/100g\n * MÓN ĐẶC SẮC: \nCá basa filê:70k\nMúa mì:20k\n * ĐỒ UỐNG: \nCoca:20k\nLavie:10k": {
+    "precision": 1.0,
+    "recall": 1.0,
+    "f1-score": 1.0,
+    "support": 10,
+    "confused_with": {}
+  },
+  "micro avg": {
+    "precision": 1.0,
+    "recall": 1.0,
+    "f1-score": 1.0,
+    "support": 44
+  },
+  "macro avg": {
+    "precision": 1.0,
+    "recall": 1.0,
+    "f1-score": 1.0,
+    "support": 44
+  },
+  "weighted avg": {
+    "precision": 1.0,
+    "recall": 1.0,
+    "f1-score": 1.0,
+    "support": 44
+  }
+}

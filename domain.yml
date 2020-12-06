@@ -1,4 +1,8 @@
 intents:
+
+  - ask_sale
+  - provided_info_table
+  - provided_info_customer
   - greet
   - goodbye
   - affirm
@@ -10,7 +14,7 @@ intents:
   - cheer_up
   - faq 
   - ask_price_food
-  - order
+  - order_food
   - ask_food_in_order
   - ask_total_order
   - search_food
@@ -18,12 +22,18 @@ intents:
   - out_of_scope
   - ask_view_restaurant
   - ask_info_food
+  - want_order_table
 
 entities:
+
   - food
   - quanity
+  - cusName
+  - order_table
+  - cusPhone
 
 slots:
+
    quanity:
     type : list
    food:
@@ -32,8 +42,15 @@ slots:
     type : unfeaturized
    totalOrder:
     type : unfeaturized
+   cusName:
+    type : text
+   cusPhone:
+    type : text
+   order_table:
+    type : text
   
 responses:
+  
   utter_greet:
    - text: Chào bạn.Chào mừng quý khách đã đến với nhà hàng lẩu MTee Ay
   utter_goodbye:
@@ -57,7 +74,13 @@ responses:
   utter_ask_view_restaurant:
    - text: Đây là không gian quán ạ
      image: "https://www.upsieutoc.com/images/2020/12/04/dau-thang-choi-lon-an-8-quan-lau-sang-chanh-hap-dan-vuot-troi-gay-bao-dan-sanh-an-ccc9722e636954273665456460.jpg"
+
 actions:
+
+   - confirm_order
+   - answer_sale
+   - answer_provided_info_table
+   - answer_provided_info_customer
    - utter_ask_view_restaurant
    - respond_faq
    - respond_chitchat
@@ -72,11 +95,13 @@ actions:
    - utter_default
    - answer_price_food
    - answer_info_food
-   - order_food
+   - action_order_food
    - answer_food_in_order
    - answer_total_order
    - answer_search_food
    - action_remove_food_in_order
+   - confirm_order_table
+   - action_order_table
 
 session_config:
   session_expiration_time: 60

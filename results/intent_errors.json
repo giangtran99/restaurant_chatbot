@@ -1,0 +1,10 @@
+[
+  {
+    "text": "lẩu dầu cay bao nhiêu ?",
+    "intent": "ask_price_food",
+    "intent_prediction": {
+      "name": "ask_info_food",
+      "confidence": 0.5455766916275024
+    }
+  }
+]
