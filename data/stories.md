@@ -15,9 +15,24 @@
    - utter_cheer_up
 * goodbye
    - utter_goodbye
+
 * ask_view_restaurant
    - utter_ask_view_restaurant
 
+
+## confirm_order
+* want_confirm_order
+   - confirm_order
+
+## confirm_table
+
+* want_confirm_order_table
+   - confirm_order_table
+   - slot{"cusName":"Giang"}
+   - slot{"cusPhone":"1234567891"}
+   - slot{"quanity":"1"}
+   - slot{"order_table":"T1"}
+   
 ## fallback story
 * out_of_scope
    - action_default_fallback
@@ -56,6 +71,14 @@
    - slot{"cusPhone":"1234567891"}
    - slot{"quanity":"1"}
 
+## order_table
+
+* want_order_table
+   - action_order_table
+   - slot{"cusName":"Giang"}
+   - slot{"cusPhone":"1234567891"}
+   - slot{"quanity":"1"}
+   - slot{"order_table":"T1"}
 
 ## ORDER 
 * order_food

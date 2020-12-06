@@ -288,8 +288,14 @@
 - Anh tên [Nam](cusName)
 
 - Mình đi [3](quanity) người nhé
-- Chú đi [hai](quanity)người thôi
+- Chú đi [hai](quanity) người thôi
 - Gia đình mình đi [năm](quanity) người nhé
+- mình đi tầm [4](quanity) người
+- Khoảng [6](quanity) người cháu à
+
+- Số điện thoại mình là [1234567891](cusPhone)
+- SĐT mình là [9876543211](cusPhone)
+- [1234567899](cusPhone) nha con ơi
 
 ## intent:want_order_table
 
@@ -300,6 +306,11 @@
 - mình đặt bàn [T5](order_table) đi
 - mình muốn đặt bàn [T3](order_table)
 - Cho anh đặt [T1](order_table) với em ơi
+
+
+## intent:want_confirm_order
+
+## intent:want_confirm_order_table
 
 ## regex:cusPhone
 - [0-9]{10}
@@ -314,3 +325,4 @@ data/vn-food.txt
 
 ## lookup:cusName
 data/vn-name.txt
+

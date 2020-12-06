@@ -11,7 +11,7 @@ from typing import Any, Text, Dict, List
 
 from rasa_sdk import Action, Tracker
 from rasa_sdk.executor import CollectingDispatcher
-from rasa_core_sdk.events import SlotSet
+from rasa_core_sdk.events import SlotSet,FollowupAction
 from difflib import SequenceMatcher
 from Food import Food
 from Customer import Customer
@@ -251,7 +251,7 @@ class OrderFood(Action):
       
         jsonOrder = json.dumps([item for item in lOrder])
         dispatcher.utter_message("Mình thêm vào order của bạn rồi nhé.")
-        buttons = [{"title": "Xác nhận", "payload": "/confirm_order"}]
+        buttons = [{"title": "Xác nhận", "payload": "/want_confirm_order"}]
         dispatcher.utter_button_message("Nhấn xác nhận để mình gửi order cho bên bếp chuẩn bị cho bạn nhé", buttons)
 
         return [SlotSet("listOrder",jsonOrder),SlotSet("totalOrder", tOrder),SlotSet("food",None),SlotSet("quanity",None)]
@@ -450,7 +450,7 @@ class AnswerProvidedInFoTable(Action):
             return []
         
         dispatcher.utter_message("Ok bạn mình đã xác nhận được bàn bạn muốn")
-        return []
+        return [FollowupAction("order_food")]
 
 class OrderTable(Action):
 
@@ -487,10 +487,10 @@ class OrderTable(Action):
         rs = ""
 
 
-        buttons = [{"title": "Xác nhận", "payload": "/confirm_order_table"}]
+        buttons = [{"title": "Xác nhận", "payload": "/want_confirm_order_table"}]
         dispatcher.utter_button_message("Bạn có muốn xác nhận đặt bàn không ?", buttons)
         
-        return [SlotSet("quanity",None)]
+        return []
 
 class AnswerProvidedInFoCustomer(Action):
 
@@ -506,7 +506,8 @@ class AnswerProvidedInFoCustomer(Action):
         cusName = tracker.get_slot('cusName') 
         cusPhone = tracker.get_slot('cusPhone') 
         quanity = tracker.get_slot('quanity') 
-
+        table_for_orderfood = tracker.get_slot('order_table') 
+         
         if cusName is None:
             dispatcher.utter_message("Bạn cho mình xin lại tên bạn với")
             return []
@@ -518,11 +519,15 @@ class AnswerProvidedInFoCustomer(Action):
         if quanity is None:
             dispatcher.utter_message("Cho Mình hỏi bạn đi mấy người nhỉ ?")
             return[]
+
+        if table_for_orderfood is None:
+
+            dispatcher.utter_message("Chọn mã bàn bạn muốn đặt giúp mình nhé")
+            return[]  
         
-        print(cusName)
-        print(cusPhone)
+
         dispatcher.utter_message("Ok bạn mình đã xác nhận thông tin của bạn")
-        return []
+        return [FollowupAction("action_order_table")]
 
 class ConfirmOrderTable(Action):
     
@@ -541,6 +546,6 @@ class ConfirmOrderTable(Action):
 
         print("confirm_order_table")
         dispatcher.utter_message("Dạ mình đặt bàn thành công cho bạn rồi nhé")
-        dispatcher.utter_message("Anh/Chị : "+cusName+"\nSố Điện Thoại: "+cusPhone+"\nSố Người: "+quanity+"\n Mã bàn : "+table_for_order)
+        dispatcher.utter_message("Anh/Chị : "+cusName+"\nSố Điện Thoại: "+cusPhone+"\nSố Người: "+quanity[0]+"\nMã bàn : "+table_for_order)
 
-        return [SlotSet("order_table",None)]
+        return [SlotSet("order_table",None),SlotSet("quanity",None)]

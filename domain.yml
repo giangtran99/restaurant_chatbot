@@ -23,6 +23,8 @@ intents:
   - ask_view_restaurant
   - ask_info_food
   - want_order_table
+  - want_confirm_order
+  - want_confirm_order_table
 
 entities:
 
