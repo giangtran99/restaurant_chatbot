@@ -306,6 +306,8 @@
 - mình đặt bàn [T5](order_table) đi
 - mình muốn đặt bàn [T3](order_table)
 - Cho anh đặt [T1](order_table) với em ơi
+## intent:search_table
+- Cho mình hỏi bên bạn còn bàn [T1](table) không ?
 
 
 ## intent:want_confirm_order

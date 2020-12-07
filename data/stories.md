@@ -79,7 +79,9 @@
    - slot{"cusPhone":"1234567891"}
    - slot{"quanity":"1"}
    - slot{"order_table":"T1"}
-
+* search_table
+   - action_search_table
+   - slot{"table":"T1"}
 ## ORDER 
 * order_food
    - action_order_food

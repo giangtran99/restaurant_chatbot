@@ -19,6 +19,7 @@ from Table import Table
 from Sale import Sale
 
 import json
+import MySQLdb
 
 
 
@@ -104,6 +105,17 @@ class ActionAnswerPriceFood(Action):
             tracker: Tracker,
             domain: Dict[Text, Any]) -> List[Dict[Text, Any]]:
 
+        db = MySQLdb.connect("localhost","root","root","quanlykhohang")
+        cursor = db.cursor()
+        q = "select * from users"
+        cursor.execute(q)
+        r = cursor.fetchall()
+        for row in r:
+            username = row[1]
+            print("username : {}".format(username))
+            password = row[2]
+            print("password : {}".format(password))
+        
         print("answer_price_food")
         food = str(tracker.get_slot('food'))
         if food is None:
@@ -530,8 +542,7 @@ class AnswerProvidedInFoCustomer(Action):
         return [FollowupAction("action_order_table")]
 
 class ConfirmOrderTable(Action):
-    
-       
+     
     def name(self) -> Text:
         return "confirm_order_table"
         
@@ -549,3 +560,33 @@ class ConfirmOrderTable(Action):
         dispatcher.utter_message("Anh/Chị : "+cusName+"\nSố Điện Thoại: "+cusPhone+"\nSố Người: "+quanity[0]+"\nMã bàn : "+table_for_order)
 
         return [SlotSet("order_table",None),SlotSet("quanity",None)]
+
+class SearchTable(Action):
+       
+    def name(self) -> Text:
+        return "action_search_table"
+        
+    def run(self, dispatcher: CollectingDispatcher,
+            tracker: Tracker,
+            domain: Dict[Text, Any]) -> List[Dict[Text, Any]]:
+
+        print("search_table")
+        table = tracker.get_slot('table')
+        print(table)
+
+        if table is None:
+            dispatcher.utter_message("Bên mình hết bàn này rồi bạn nhé") 
+            return []
+
+        Max = SequenceMatcher(a=table[0], b="T1").ratio()
+        for item in Table():
+            temp = SequenceMatcher(a=table[0], b=item.name).ratio()
+            if temp >= Max:
+                Max = temp
+
+        print(Max)
+        if Max < 0.7:
+            dispatcher.utter_message("Bên mình hết bàn này rồi bạn nhé") 
+        else:
+            dispatcher.utter_message("Bên mình còn bàn này bạn nhé !") 
+        return [SlotSet("table",None)]

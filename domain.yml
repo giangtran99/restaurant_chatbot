@@ -25,6 +25,7 @@ intents:
   - want_order_table
   - want_confirm_order
   - want_confirm_order_table
+  - search_table
 
 entities:
 
@@ -49,6 +50,8 @@ slots:
    cusPhone:
     type : text
    order_table:
+    type : text
+   table :
     type : text
   
 responses:
@@ -104,6 +107,8 @@ actions:
    - action_remove_food_in_order
    - confirm_order_table
    - action_order_table
+   - answer_search_table
+   - action_search_table
 
 session_config:
   session_expiration_time: 60
