@@ -20,19 +20,6 @@
    - utter_ask_view_restaurant
 
 
-## confirm_order
-* want_confirm_order
-   - confirm_order
-
-## confirm_table
-
-* want_confirm_order_table
-   - confirm_order_table
-   - slot{"cusName":"Giang"}
-   - slot{"cusPhone":"1234567891"}
-   - slot{"quanity":"1"}
-   - slot{"order_table":"T1"}
-   
 ## fallback story
 * out_of_scope
    - action_default_fallback
@@ -62,42 +49,42 @@
 ## provided_table
 * provided_info_table
    - answer_provided_info_table
-   - slot{"order_table":"T2"}
+   - slot{"sOrderFood": "True"}
+
 
 ## provided_info_customer
 * provided_info_customer
    - answer_provided_info_customer
-   - slot{"cusName":"Giang"}
-   - slot{"cusPhone":"1234567891"}
-   - slot{"quanity":"1"}
+   - slot{"sOrderTable":"True"}
 
 ## order_table
 
 * want_order_table
    - action_order_table
-   - slot{"cusName":"Giang"}
-   - slot{"cusPhone":"1234567891"}
-   - slot{"quanity":"1"}
-   - slot{"order_table":"T1"}
+   - slot{"sOrderTable": "True"}
+   - slot{"order_table": "None"}
+
+## search_table
 * search_table
    - action_search_table
    - slot{"table":"T1"}
+
 ## ORDER 
 * order_food
    - action_order_food
-   - slot{"order_table":"T1"}
-   - slot{"food": "coca"}
-   - slot{"quanity": "một"}
+   - slot{"sOrderFood":"True"}
+   - slot{"food": "None"}
+   - slot{"quanity": "None"}
+   - slot{"listOrder": "None"}
+   - slot{"totalOrder": "None"}
   
 ## ASK_FOOD_ORDER
 * ask_food_in_order
    - answer_food_in_order
-   - slot{"listOrder": "[]"}
 
 ## ASK_TOTAL_ORDER
 * ask_total_order
    - answer_total_order
-   - slot{"totalOrder": 210}
 
 ## SEARCH_FOOD
 * search_food
@@ -108,6 +95,11 @@
 * remove_food_in_order
    - action_remove_food_in_order
    - slot{"food": "coca"}
+   - slot{"listOrder": "None"}
+   - slot{"totalOrder": "None"}
+## PROVIDED_INFO_ORDER
+* provided_info_order
+   - answer_provided_info_order
 
 ## story 3
 * greet
@@ -116,11 +108,29 @@
    - answer_sale
 * order_food
    - action_order_food
-   - slot{"order_table":"T1"}
-   - slot{"food": "coca"}
-   - slot{"quanity": "một"}
+   - slot{"sOrderFood":"True"}
+   - slot{"food": "None"}
+   - slot{"quanity": "None"}
+   - slot{"listOrder": "None"}
+   - slot{"totalOrder": "None"}
 * remove_food_in_order
    - action_remove_food_in_order
    - slot{"food": "coca"}
+   - slot{"listOrder": "None"}
+   - slot{"totalOrder": "None"}
 * goodbye
    - utter_goodbye
+
+## confirm
+* confirm
+   - action_affirm
+
+## suggest 1
+* suggest_order_food
+   - action_suggest_order_food
+   - slot{"sOrderFood":"True"}
+## suggest 2
+* suggest_order_table
+   - action_suggest_order_table
+   - slot{"sOrderTable":"True"}
+

@@ -1,8 +1,19 @@
 ## intent:affirm
-- được
+- trash 1
+- garbage 1
+
+## intent:confirm
+
+- chốt đi
+- thôi mình không lấy gì nữa
+- ok xác nhận đi
+- thế đi
+- vậy đc r
+- xác nhận giúp mình nhé
+- uk vậy đi
+- có tôi muốn
+- có
 - ok
-- sao cũng được
-- đồng ý
 
 ## intent:deny
 
@@ -99,6 +110,7 @@
 - cho mình cái thực đơn xem nào
 
 
+
 ## intent:faq/hoi_gia_chung
 
 - Giá món ở đây thế nào 
@@ -108,6 +120,15 @@
 - Mình đi tầm 3 4 người hết bao nhiêu em ?
 - Nghe bảo lẩu ở đây đắt lắm
 - Mình chưa ăn ở đây bao h không biết giá cả thế nào ?
+
+## intent:faq/hoi_ship_ve_nha
+
+- Có cho đặt về nhà không  
+- Con ơi cho chú hỏi mình đặt món về nhà được không nhỉ
+- Chú muốn đặt mang về được không
+- có cho ship về nhà không em
+- muốn ship mang về thì sao 
+- không biế có ship lẩu về nhà không nhỉ ?
 
 ## intent:faq/gioi_thieu_quan
 
@@ -146,6 +167,8 @@
 - Quán bố trí rộng rãi không em ?
 - Quán xá trông thế nào em
 
+
+
 ## intent:provided_info_table
 
 - Cho bàn [T1](order_table)
@@ -157,8 +180,6 @@
 - Bàn [T2](order_table) á bạn
 - bàn [T4](order_table) cháu ơi
 - minh ngồi bàn [T3](order_table)
-
-
 
 ## intent:ask_sale
 
@@ -213,6 +234,22 @@
 - Cho mình xin cái tổng tiền với
 - Chỗ kia hết nhiêu ?
 
+## intent:provided_info_order
+
+- Minh nhầm [lẩu dầu cay không vụn](food) nhá
+- [lẩu cay không vụn](food) em
+- [lẩu không vụn](food)
+- ý mình là [lẩu thảo dược](food) em ơi 
+- Mình nhầm mình muốn [coca](food) 
+- À [lavie](food) nha
+- Mình muốn đặt [lẩu dầu cay không vụn](food) đó
+
+- Cho mình [mười](quanity) phần đi
+- Lấy em [5](quanity) đĩa đi anh
+- mình lấy [3](quanity) lon nha
+- cho anh [bốn](quanity) chai nhé
+
+
 ## intent:order_food
 
 - Em ơi cho anh [sáu](quanity) phần [lẩu dầu cay không vụn](food) đi
@@ -229,16 +266,17 @@
 - thêm [sáu](quanity) phần [thịt bò bông tuyết mỹ](food) nữa nhé
 - Cho mình [một](quanity) phần [múa mì](food)
 - Lấy mình [bảy](quanity) suất [thịt bò nhật](food) nhé
-- Cho mình [bảy](quanity) [thịt bò nhật](food) 
 - Cho cô [tám](quanity) phần [cá basa phi lê](food) nha bàn cô hết rồi
 - Lấy tao [9](quanity) lon [coca](food) cực ngon 
 - Em muốn [mười](quanity) chai [lavie](food) 
 - Mình muốn đặt [5](quanity) nồi [lẩu dầu cay không vụn](food)
-- Cho mình [mười](quanity) phần [thịt bò nhật](food) luôn nhé
 - Lấy mình [1](quanity) đĩa [thịt bò nhật](food) 
 - Tôi muốn [bảy](quanity) lon [coca](food) 
 - Cho mình xin [2](quanity) [coca](food)
-
+- Ok bạn chốt order cho mình [3](quanity) [coca](food) đi
+- cho mình đặt [1](quanity) [thịt bò nhật](food) 
+- Cho anh đặt [6](quanity) [lẩu mala](food) 
+- Giờ chị muốn đặt  [2](quanity) [lẩu dầu cay](food)  
 
 ## intent:search_food
 - Cho mình hỏi bên bạn có [lẩu dầu cay không vụn](food)
@@ -286,16 +324,24 @@
 - Anh tên là [Thắng] nhé
 - Tên mình là [Nga](cusName)
 - Anh tên [Nam](cusName)
+- Mình tên [Tùng](cusName) nha
+- Bác tên [Hiếu](cusName) cháu ơi
+- Anh tên [Trưởng](cusName) nha
+- [Tuấn Anh](cusName)
 
 - Mình đi [3](quanity) người nhé
 - Chú đi [hai](quanity) người thôi
 - Gia đình mình đi [năm](quanity) người nhé
 - mình đi tầm [4](quanity) người
 - Khoảng [6](quanity) người cháu à
+- [2](quanity) người
+- [1](quanity)
+
 
 - Số điện thoại mình là [1234567891](cusPhone)
 - SĐT mình là [9876543211](cusPhone)
 - [1234567899](cusPhone) nha con ơi
+- [1234444441]
 
 ## intent:want_order_table
 
@@ -306,13 +352,28 @@
 - mình đặt bàn [T5](order_table) đi
 - mình muốn đặt bàn [T3](order_table)
 - Cho anh đặt [T1](order_table) với em ơi
+- cho mình đặt bàn [T3](order_table) bạn ơi
+- à cho mình đặt bàn [T2](order_table) tiếp nhé 
+
 ## intent:search_table
 - Cho mình hỏi bên bạn còn bàn [T1](table) không ?
+## intent:suggest_order_food
+- Cho mình đặt món với
+- Cho mình đặt món với bạn ơi
+- Cháu ơi cho chú đặt món đi
+- Đặt món sao nhỉ ?
+- đặt món cho mình nhé
+- mình muốn đặt món bạn ơi
 
+## intent:suggest_order_table
 
-## intent:want_confirm_order
-
-## intent:want_confirm_order_table
+- Cho mình đặt bàn đi bạn ơi
+- Mình muốn đặt bàn nhé
+- Đặt bàn cho mình vs
+- Cháu ơi cho chú đặt bàn
+- Cậu ơi mình muốn đặt bàn tổ chức tiệc sinh nhật
+- Giờ muốn đặt bàn thì làm gì ?
+- cho mình đặt tiếp đi
 
 ## regex:cusPhone
 - [0-9]{10}
