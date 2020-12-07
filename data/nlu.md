@@ -121,6 +121,15 @@
 - Nghe bảo lẩu ở đây đắt lắm
 - Mình chưa ăn ở đây bao h không biết giá cả thế nào ?
 
+## intent:faq/hoi_ship_ve_nha
+
+- Có cho đặt về nhà không  
+- Con ơi cho chú hỏi mình đặt món về nhà được không nhỉ
+- Chú muốn đặt mang về được không
+- có cho ship về nhà không em
+- muốn ship mang về thì sao 
+- không biế có ship lẩu về nhà không nhỉ ?
+
 ## intent:faq/gioi_thieu_quan
 
 - Đây phải quán lẩu MTee Ay không 
@@ -265,9 +274,9 @@
 - Tôi muốn [bảy](quanity) lon [coca](food) 
 - Cho mình xin [2](quanity) [coca](food)
 - Ok bạn chốt order cho mình [3](quanity) [coca](food) đi
-- cho mình đặt món [1](quanity) [thịt bò nhật](food) 
-- Cho anh đặt món [6](quanity) [lẩu mala](food) 
-- Giờ chị muốn đặt món [2](quanity) [lẩu dầu cay](food)  
+- cho mình đặt [1](quanity) [thịt bò nhật](food) 
+- Cho anh đặt [6](quanity) [lẩu mala](food) 
+- Giờ chị muốn đặt  [2](quanity) [lẩu dầu cay](food)  
 
 ## intent:search_food
 - Cho mình hỏi bên bạn có [lẩu dầu cay không vụn](food)
@@ -353,6 +362,7 @@
 - Cháu ơi cho chú đặt món đi
 - Đặt món sao nhỉ ?
 - đặt món cho mình nhé
+- mình muốn đặt món bạn ơi
 
 ## intent:suggest_order_table
 
@@ -362,6 +372,7 @@
 - Cháu ơi cho chú đặt bàn
 - Cậu ơi mình muốn đặt bàn tổ chức tiệc sinh nhật
 - Giờ muốn đặt bàn thì làm gì ?
+- cho mình đặt tiếp đi
 
 ## regex:cusPhone
 - [0-9]{10}

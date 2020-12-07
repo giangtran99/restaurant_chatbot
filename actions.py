@@ -488,6 +488,17 @@ class OrderTable(Action):
 
             dispatcher.utter_message("Chọn mã bàn bạn muốn đặt giúp mình nhé")
             return[SlotSet("sOrderTable",True)]   
+        
+        # kiểm tra trạng thái mã bàn có trống không
+        deny = False
+        for t in ListTable():
+            if t.name == table_for_orderfood and t.status == 1:
+                deny = True
+
+    
+        if deny is True:
+            dispatcher.utter_message("Bàn này đã có người đặt anh chọn bàn khác giúp em với ạ !")
+            return[SlotSet("order_table",None)]   
 
         if cusName is None:
             dispatcher.utter_message("Bạn cho mình xin tên bạn với")
@@ -614,7 +625,6 @@ class AnswerProvidedInFoOrder(Action):
 
         return [FollowupAction("action_order_food")]
 
-
 class SugestOrderFood(Action):
     
        
@@ -630,10 +640,11 @@ class SugestOrderFood(Action):
         if context_1 is None and context_2 is None:
             return[SlotSet("sOrderFood",True),FollowupAction("action_order_food")]
 
+        if context_2 is True:
+            return[FollowupAction("action_order_table")]  
 
         dispatcher.utter_message("Có chuyện gì không ạ ?")
         return []
-
 
 class SugestOrderTable(Action):
      
@@ -648,6 +659,9 @@ class SugestOrderTable(Action):
 
         if context_1 is None and context_2 is None:
             return[SlotSet("sOrderTable",True),FollowupAction("action_order_table")]
+
+        if context_1 is True:
+            return[FollowupAction("action_order_food")]  
 
 
         dispatcher.utter_message("Có chuyện gì không ạ ?")

@@ -28,3 +28,7 @@
 
 * faq/gioi_thieu_quan
     - Mtee Ay là hệ thống chuỗi nhà hàng lẩu được thành lập vào năm 1994 tại thành phố Giản Dương, tỉnh Tứ Xuyên, phục vụ trực tiếp xuyên tỉnh lớn, tích hợp các đặc tính của lẩu từ khắp nơi trên thế giới đó bạn ạ !
+    
+## ship_ve_nha
+* faq/hoi_ship_ve_nha
+    - Dạ bên mình hiện tại chưa hỗ trợ dịch vụ ship về nhà. Bạn chỉ có thế ăn lẩu bên mình tại quán được thôi ạ

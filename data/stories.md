@@ -62,7 +62,7 @@
 * want_order_table
    - action_order_table
    - slot{"sOrderTable": "True"}
-
+   - slot{"order_table": "None"}
 
 ## ORDER 
 * order_food
@@ -128,3 +128,4 @@
 * suggest_order_table
    - action_suggest_order_table
    - slot{"sOrderTable":"True"}
+
