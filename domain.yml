@@ -23,8 +23,10 @@ intents:
   - ask_view_restaurant
   - ask_info_food
   - want_order_table
-  - want_confirm_order
-  - want_confirm_order_table
+  - confirm
+  - provided_info_order
+  - suggest_order_food
+  - suggest_order_table
 
 entities:
 
@@ -50,6 +52,10 @@ slots:
     type : text
    order_table:
     type : text
+   sOrderFood:
+    type : bool
+   sOrderTable:
+    type : bool
   
 responses:
   
@@ -104,6 +110,10 @@ actions:
    - action_remove_food_in_order
    - confirm_order_table
    - action_order_table
+   - action_affirm
+   - answer_provided_info_order
+   - action_suggest_order_food
+   - action_suggest_order_table
 
 session_config:
   session_expiration_time: 60

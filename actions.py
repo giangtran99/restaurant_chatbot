@@ -21,8 +21,6 @@ from Sale import Sale
 import json
 
 
-
-
 def ListSale():
     mylist = []
     s1 = Sale("Khuyến mãi Noel ăn lẩu thảo dược tặng 1 lẩu thảo dược")
@@ -167,6 +165,7 @@ class OrderFood(Action):
 
         print("action_order_food")
         
+
         table_for_orderfood = tracker.get_slot('order_table') 
         print(table_for_orderfood)
         food = tracker.get_slot('food') # Chứa các món trong cầu người dùng
@@ -174,12 +173,24 @@ class OrderFood(Action):
         jsonOrder = tracker.get_slot('listOrder') # Chứa các món trong order người dùng
         tOrder = tracker.get_slot('totalOrder')
 
-
-        if table_for_orderfood is None:
-            dispatcher.utter_message("Cho mình xin mã bàn rồi order lại giúp mình nhé !")
+        if food is None :
+            dispatcher.utter_message("Bạn muốn đặt món gì ghi ra giúp mình nhé") 
             return []
 
-        
+        rs =""  
+        for item in food:
+            rs+=item + ","
+            
+        if quanity is None:
+        ## Kiểm tra không có số lượng
+            dispatcher.utter_message("Bạn lấy "+rs+" số lượng thế nào ạ ?")
+            return []
+
+                
+        if table_for_orderfood is None:
+            dispatcher.utter_message("Bàn đang ngồi ở bàn nào nhỉ ?!")
+            return [SlotSet("sOrderFood",True)] 
+
         ck = False
         for table in ListTable():
             if table_for_orderfood == table.name:
@@ -190,20 +201,7 @@ class OrderFood(Action):
             return []
 
         ## Nếu kiểm tra món ăn không tồn tại trong thực đơn
-        if food is None :
-            dispatcher.utter_message("Dạ bên mình không có món này bạn ạ") 
-            return []
         
-        
-        rs =""  
-        for item in food:
-            rs+=item + ","
-            
-        if quanity is None:
-        ## Kiểm tra không có số lượng
-            dispatcher.utter_message("Bạn lấy "+rs+" số lượng thế nào ạ ?")
-            return []
-
         
         print(food)
         print(quanity)
@@ -251,8 +249,7 @@ class OrderFood(Action):
       
         jsonOrder = json.dumps([item for item in lOrder])
         dispatcher.utter_message("Mình thêm vào order của bạn rồi nhé.")
-        buttons = [{"title": "Xác nhận", "payload": "/want_confirm_order"}]
-        dispatcher.utter_button_message("Nhấn xác nhận để mình gửi order cho bên bếp chuẩn bị cho bạn nhé", buttons)
+        dispatcher.utter_message("Bạn có muốn xác nhận order này chưa ạ ? Có muốn đặt thêm gì không ?")
 
         return [SlotSet("listOrder",jsonOrder),SlotSet("totalOrder", tOrder),SlotSet("food",None),SlotSet("quanity",None)]
 
@@ -419,7 +416,7 @@ class ConfirmOrder(Action):
 
         print("confirm_order")
         dispatcher.utter_message("Bạn vui lòng đợi một lát món ăn chuẩn bị thường trong vòng 10-15p ạ")
-        return [SlotSet("listOrder",None),SlotSet("totalOrder",None),SlotSet("order_table",None)]
+        return [SlotSet("listOrder",None),SlotSet("totalOrder",None),SlotSet("order_table",None),SlotSet("sOrderFood",None)]
 
 class AnswerProvidedInFoTable(Action):
 
@@ -431,6 +428,17 @@ class AnswerProvidedInFoTable(Action):
             tracker: Tracker,
             domain: Dict[Text, Any]) -> List[Dict[Text, Any]]:
         
+        # Vào ngữ cảnh order food
+        check = tracker.get_slot('sOrderTable') 
+        check2 = tracker.get_slot('sOrderFood')
+
+        if check is None and check2 is None:
+            return[SlotSet("sOrderFood",True),FollowupAction("action_order_food")]
+
+        # Nếu ngữ cảnh order table thì cho về order_table
+        if check is True:
+            return [FollowupAction("action_order_table")]
+
         print("answer_provided_info_table")
         table_for_orderfood = tracker.get_slot('order_table') 
 
@@ -450,7 +458,7 @@ class AnswerProvidedInFoTable(Action):
             return []
         
         dispatcher.utter_message("Ok bạn mình đã xác nhận được bàn bạn muốn")
-        return [FollowupAction("order_food")]
+        return [FollowupAction("action_order_food")]
 
 class OrderTable(Action):
 
@@ -465,12 +473,21 @@ class OrderTable(Action):
         cusName = tracker.get_slot('cusName') 
         cusPhone = tracker.get_slot('cusPhone') 
         quanity = tracker.get_slot('quanity') 
-        table_for_orderfood = tracker.get_slot('order_table') 
-        
+        table_for_orderfood = tracker.get_slot('order_table')        
+        check = tracker.get_slot('sOrderFood')
+        check2 = tracker.get_slot('sOrderTable')
+
+        if check is None and check2 is None:
+            return[SlotSet("sOrderTable",True),FollowupAction("action_order_table")]
+
+        # Nếu trong ngữ cảnh order_food thì trả về order_food
+        if check is True:
+            return[FollowupAction("action_order_food")]  
+
         if table_for_orderfood is None:
 
             dispatcher.utter_message("Chọn mã bàn bạn muốn đặt giúp mình nhé")
-            return[]   
+            return[SlotSet("sOrderTable",True)]   
 
         if cusName is None:
             dispatcher.utter_message("Bạn cho mình xin tên bạn với")
@@ -486,9 +503,7 @@ class OrderTable(Action):
          
         rs = ""
 
-
-        buttons = [{"title": "Xác nhận", "payload": "/want_confirm_order_table"}]
-        dispatcher.utter_button_message("Bạn có muốn xác nhận đặt bàn không ?", buttons)
+        dispatcher.utter_message("Bạn có chắc chắn muốn đặt bàn này không ?")
         
         return []
 
@@ -523,7 +538,7 @@ class AnswerProvidedInFoCustomer(Action):
         if table_for_orderfood is None:
 
             dispatcher.utter_message("Chọn mã bàn bạn muốn đặt giúp mình nhé")
-            return[]  
+            return[SlotSet("sOrderTable",True)]   
         
 
         dispatcher.utter_message("Ok bạn mình đã xác nhận thông tin của bạn")
@@ -548,4 +563,92 @@ class ConfirmOrderTable(Action):
         dispatcher.utter_message("Dạ mình đặt bàn thành công cho bạn rồi nhé")
         dispatcher.utter_message("Anh/Chị : "+cusName+"\nSố Điện Thoại: "+cusPhone+"\nSố Người: "+quanity[0]+"\nMã bàn : "+table_for_order)
 
-        return [SlotSet("order_table",None),SlotSet("quanity",None)]
+        return [SlotSet("order_table",None),SlotSet("quanity",None),SlotSet("sOrderTable",None),SlotSet("cusName",None),SlotSet("cusPhone",None)]
+
+class Affirm(Action):
+    
+       
+    def name(self) -> Text:
+        return "action_affirm"
+        
+    def run(self, dispatcher: CollectingDispatcher,
+            tracker: Tracker,
+            domain: Dict[Text, Any]) -> List[Dict[Text, Any]]:
+        context_1 = tracker.get_slot('sOrderFood')
+        context_2 = tracker.get_slot('sOrderTable')
+
+        if context_1 is True:
+            return[FollowupAction("confirm_order")]
+        if context_2 is True:
+            return[FollowupAction("confirm_order_table")]
+
+        dispatcher.utter_message("Có chuyện gì không ạ ?")
+        return []
+
+class AnswerProvidedInFoOrder(Action):
+
+       
+    def name(self) -> Text:
+        return "answer_provided_info_order"
+        
+    def run(self, dispatcher: CollectingDispatcher,
+            tracker: Tracker,
+            domain: Dict[Text, Any]) -> List[Dict[Text, Any]]:
+        
+        print("answer_provided_info_order")
+        food = tracker.get_slot('food') # Chứa các món trong cầu người dùng
+        quanity = tracker.get_slot('quanity')
+
+        if food is None :
+            dispatcher.utter_message("Bạn muốn đặt món gì ghi chính xác giúp mình nhé") 
+            return []
+
+        rs =""  
+        for item in food:
+            rs+=item + ","
+            
+        if quanity is None:
+        ## Kiểm tra không có số lượng
+            dispatcher.utter_message("Bạn lấy "+rs+" số lượng thế nào ạ ?")
+            return []
+
+        return [FollowupAction("action_order_food")]
+
+
+class SugestOrderFood(Action):
+    
+       
+    def name(self) -> Text:
+        return "action_suggest_order_food"
+        
+    def run(self, dispatcher: CollectingDispatcher,
+            tracker: Tracker,
+            domain: Dict[Text, Any]) -> List[Dict[Text, Any]]:
+        context_1 = tracker.get_slot('sOrderFood')
+        context_2 = tracker.get_slot('sOrderTable')
+
+        if context_1 is None and context_2 is None:
+            return[SlotSet("sOrderFood",True),FollowupAction("action_order_food")]
+
+
+        dispatcher.utter_message("Có chuyện gì không ạ ?")
+        return []
+
+
+class SugestOrderTable(Action):
+     
+    def name(self) -> Text:
+        return "action_suggest_order_table"
+        
+    def run(self, dispatcher: CollectingDispatcher,
+            tracker: Tracker,
+            domain: Dict[Text, Any]) -> List[Dict[Text, Any]]:
+        context_1 = tracker.get_slot('sOrderFood')
+        context_2 = tracker.get_slot('sOrderTable')
+
+        if context_1 is None and context_2 is None:
+            return[SlotSet("sOrderTable",True),FollowupAction("action_order_table")]
+
+
+        dispatcher.utter_message("Có chuyện gì không ạ ?")
+        return []
