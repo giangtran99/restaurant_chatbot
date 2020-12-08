@@ -28,6 +28,7 @@ intents:
   - suggest_order_food
   - suggest_order_table
   - search_table
+  - table_empty
 
 entities:
 
@@ -36,6 +37,7 @@ entities:
   - cusName
   - order_table
   - cusPhone
+  - table
 
 slots:
 
@@ -118,6 +120,7 @@ actions:
    - action_suggest_order_food
    - action_suggest_order_table
    - action_search_table
+   - answer_table_empty
 
 session_config:
   session_expiration_time: 60

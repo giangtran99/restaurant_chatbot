@@ -676,11 +676,12 @@ class SugestOrderTable(Action):
 
 
         dispatcher.utter_message("Có chuyện gì không ạ ?")
-        return []
-class SugestOrderTable(Action):
+        return []  
+
+class SearchTable(Action):
      
     def name(self) -> Text:
-        return "action_suggest_order_table"
+        return "action_search_table"
         
     def run(self, dispatcher: CollectingDispatcher,
             tracker: Tracker,
@@ -688,21 +689,44 @@ class SugestOrderTable(Action):
 
         print("search_table")
         table = tracker.get_slot('table')
-        print(table)
 
         if table is None:
             dispatcher.utter_message("Bên mình hết bàn này rồi bạn nhé") 
             return []
 
-        Max = SequenceMatcher(a=table[0], b="T1").ratio()
-        for item in Table():
-            temp = SequenceMatcher(a=table[0], b=item.name).ratio()
+        Max = SequenceMatcher(a=table, b="T1").ratio()
+        status = 0
+
+        for item in ListTable():
+            temp = SequenceMatcher(a=table, b=item.name).ratio()
             if temp >= Max:
                 Max = temp
+                status = item.status
 
-        print(Max)
         if Max < 0.7:
-            dispatcher.utter_message("Bên mình hết bàn này rồi bạn nhé") 
-        else:
-            dispatcher.utter_message("Bên mình còn bàn này bạn nhé !") 
+            dispatcher.utter_message("Bên mình hết bàn này rồi bạn nhé. Bạn thông cảm giúp mình :(") 
+        elif Max >= 0.7 and status == 1:
+            dispatcher.utter_message("Bên mình hết bàn này rồi bạn nhé. Bạn thông cảm giúp mình :(") 
+        else :
+            dispatcher.utter_message("Bên mình còn bàn này bạn nhé :D") 
         return [SlotSet("table",None)]
+
+class AnswerTableEmpty(Action):
+     
+    def name(self) -> Text:
+        return "answer_table_empty"
+        
+    def run(self, dispatcher: CollectingDispatcher,
+            tracker: Tracker,
+            domain: Dict[Text, Any]) -> List[Dict[Text, Any]]:
+        
+        print("answer_table_empty")
+        answer = ""
+        for item in ListTable():
+            if item.status == 0 :
+                answer += " {}".format(item.name)
+        if(answer == ""):
+            dispatcher.utter_message("Bên mình hiện tại không còn bàn nào trống bạn nhé :(")
+        else :
+            dispatcher.utter_message("Hiện tại bên mình còn có bàn{} trống nhé :D".format(answer))  
+        return[]
