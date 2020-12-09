@@ -1,6 +1,6 @@
 ## intent:affirm
-- trash 1
-- garbage 1
+- trash 
+- garbage 
 
 ## intent:confirm
 
@@ -345,6 +345,12 @@
 - [1234567899](cusPhone) nha con ơi
 - [1234444441](cusPhone)
 
+- Mình đi lúc [3h chiều](hour) [thứ năm](day) [ngày kia](moment)
+- Cho mình đặt lúc [9h tối](hour) [thứ ba](day) [tuần này](moment)
+- [8h tối](hour) [ngày mai](moment) đi bạn
+- Chắc tầm [7h tối](hour) [thứ 5](day) [tuần sau](moment)
+
+
 ## intent:want_order_table
 
 - Cho mình đặt bàn [T2](order_table)
@@ -376,6 +382,7 @@
 - Còn bàn nào trống không mày ?
 - Còn bàn nào trống không ?
 - Còn bàn trống không ?
+- bên bạn còn bàn không
 
 ## intent:suggest_order_food
 - Cho mình đặt món với
@@ -409,3 +416,11 @@ data/vn-food.txt
 ## lookup:cusName
 data/vn-name.txt
 
+## lookup:day
+data/vn-day.txt
+
+## lookup:hour
+data/vn-hour.txt
+
+## lookup:moment
+data/vn-moment.txt

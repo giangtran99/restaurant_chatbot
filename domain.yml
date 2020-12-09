@@ -38,6 +38,9 @@ entities:
   - order_table
   - cusPhone
   - table
+  - hour
+  - day 
+  - moment
 
 slots:
 
@@ -60,6 +63,12 @@ slots:
    sOrderTable:
     type : bool
    table :
+    type : text
+   hour  :
+    type : text 
+   day   :
+    type : text
+   moment:
     type : text
   
 responses:
