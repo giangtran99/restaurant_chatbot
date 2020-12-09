@@ -19,6 +19,7 @@ from Table import Table
 from Sale import Sale
 
 import json
+import MySQLdb
 
 
 def ListSale():
@@ -102,6 +103,17 @@ class ActionAnswerPriceFood(Action):
             tracker: Tracker,
             domain: Dict[Text, Any]) -> List[Dict[Text, Any]]:
 
+        db = MySQLdb.connect("localhost","root","root","quanlykhohang")
+        cursor = db.cursor()
+        q = "select * from users"
+        cursor.execute(q)
+        r = cursor.fetchall()
+        for row in r:
+            username = row[1]
+            print("username : {}".format(username))
+            password = row[2]
+            print("password : {}".format(password))
+        
         print("answer_price_food")
         food = str(tracker.get_slot('food'))
         if food is None:
@@ -556,8 +568,7 @@ class AnswerProvidedInFoCustomer(Action):
         return [FollowupAction("action_order_table")]
 
 class ConfirmOrderTable(Action):
-    
-       
+     
     def name(self) -> Text:
         return "confirm_order_table"
         
@@ -665,4 +676,57 @@ class SugestOrderTable(Action):
 
 
         dispatcher.utter_message("Có chuyện gì không ạ ?")
-        return []
+        return []  
+
+class SearchTable(Action):
+     
+    def name(self) -> Text:
+        return "action_search_table"
+        
+    def run(self, dispatcher: CollectingDispatcher,
+            tracker: Tracker,
+            domain: Dict[Text, Any]) -> List[Dict[Text, Any]]:
+
+        print("search_table")
+        table = tracker.get_slot('table')
+
+        if table is None:
+            dispatcher.utter_message("Bên mình hết bàn này rồi bạn nhé") 
+            return []
+
+        Max = SequenceMatcher(a=table, b="T1").ratio()
+        status = 0
+
+        for item in ListTable():
+            temp = SequenceMatcher(a=table, b=item.name).ratio()
+            if temp >= Max:
+                Max = temp
+                status = item.status
+
+        if Max < 0.7:
+            dispatcher.utter_message("Bên mình hết bàn này rồi bạn nhé. Bạn thông cảm giúp mình :(") 
+        elif Max >= 0.7 and status == 1:
+            dispatcher.utter_message("Bên mình hết bàn này rồi bạn nhé. Bạn thông cảm giúp mình :(") 
+        else :
+            dispatcher.utter_message("Bên mình còn bàn này bạn nhé :D") 
+        return [SlotSet("table",None)]
+
+class AnswerTableEmpty(Action):
+     
+    def name(self) -> Text:
+        return "answer_table_empty"
+        
+    def run(self, dispatcher: CollectingDispatcher,
+            tracker: Tracker,
+            domain: Dict[Text, Any]) -> List[Dict[Text, Any]]:
+        
+        print("answer_table_empty")
+        answer = ""
+        for item in ListTable():
+            if item.status == 0 :
+                answer += " {}".format(item.name)
+        if(answer == ""):
+            dispatcher.utter_message("Bên mình hiện tại không còn bàn nào trống bạn nhé :(")
+        else :
+            dispatcher.utter_message("Hiện tại bên mình còn có bàn{} trống nhé :D".format(answer))  
+        return[]

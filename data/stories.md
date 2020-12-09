@@ -64,6 +64,15 @@
    - slot{"sOrderTable": "True"}
    - slot{"order_table": "None"}
 
+## search_table
+* search_table
+   - action_search_table
+   - slot{"table":"T1"}
+
+## table_empty
+* table_empty
+   - answer_table_empty
+
 ## ORDER 
 * order_food
    - action_order_food

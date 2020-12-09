@@ -27,6 +27,8 @@ intents:
   - provided_info_order
   - suggest_order_food
   - suggest_order_table
+  - search_table
+  - table_empty
 
 entities:
 
@@ -35,6 +37,7 @@ entities:
   - cusName
   - order_table
   - cusPhone
+  - table
 
 slots:
 
@@ -56,6 +59,8 @@ slots:
     type : bool
    sOrderTable:
     type : bool
+   table :
+    type : text
   
 responses:
   
@@ -114,6 +119,8 @@ actions:
    - answer_provided_info_order
    - action_suggest_order_food
    - action_suggest_order_table
+   - action_search_table
+   - answer_table_empty
 
 session_config:
   session_expiration_time: 60

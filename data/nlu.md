@@ -357,6 +357,25 @@
 - cho mình đặt bàn [T3](order_table) bạn ơi
 - à cho mình đặt bàn [T2](order_table) tiếp nhé 
 
+## intent:search_table
+- Cho mình hỏi bên bạn còn bàn [T1](table) không ?
+- Còn bàn [T2](table) không bạn ?
+- Bàn [T2](table) còn không ?
+- Bàn [T1](table) còn trống không bạn ?
+- Bàn [T2](table) còn không bạn ?
+- Cho mình hỏi bàn [T2](table) còn không nhỉ ?
+
+## intent:table_empty
+- Cho mình hỏi hiện tại bên mình còn bàn trống không nhỉ ?
+- Bên mình còn bàn trống không nhỉ ?
+- Còn bàn trống không em ?
+- Còn bàn trống không mày ?
+- Còn những bàn nào trống ?
+- Còn những bàn nào còn trống ?
+- Còn bàn nào trống không em ?
+- Còn bàn nào trống không mày ?
+- Còn bàn nào trống không ?
+- Còn bàn trống không ?
 
 ## intent:suggest_order_food
 - Cho mình đặt món với
