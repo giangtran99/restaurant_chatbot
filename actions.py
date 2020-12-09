@@ -26,13 +26,17 @@ def getListTable():
     db = MySQLdb.connect("128.199.169.112","root","anhductp@123","chatbot_rasa")
     cursor = db.cursor()
     sql = "select * from tables"
-    listTable = []
-    cursor.execute(sql)
-    results = cursor.fetchall()
-    for item in results:
-        print(item)
-        listTable.append(Table(item[0],item[1],item[2]))
-    db.close()
+    listTable = [] 
+    try:
+        cursor.execute(sql)
+        results = cursor.fetchall()
+        for item in results:
+            print(item)
+            listTable.append(Table(item[0],item[1],item[2]))    
+    except:
+        print("Đã có lỗi xảy ra !")
+    finally:
+        db.close()
     return listTable
 
 def ListSale():
@@ -773,7 +777,7 @@ class AnswerTableEmpty(Action):
             domain: Dict[Text, Any]) -> List[Dict[Text, Any]]:
         
         print("answer_table_empty")
-        # getListTable()
+        getListTable()
         answer = ""
         for item in ListTable():
             if item.status == 0 :
