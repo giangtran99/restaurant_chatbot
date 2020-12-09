@@ -1,6 +1,6 @@
 ## intent:affirm
-- trash 1
-- garbage 1
+- trash 
+- garbage 
 
 ## intent:confirm
 
@@ -233,6 +233,7 @@
 - Tính tiền em
 - Cho mình xin cái tổng tiền với
 - Chỗ kia hết nhiêu ?
+- cho mình hỏi tổng hết bao nhiêu rồi
 
 ## intent:provided_info_order
 
@@ -307,6 +308,7 @@
 - đừng lấy [thịt bò nhật](food) nữa
 - Thôi không uống [coca](food) nha
 - Thôi mình không uống [lavie](food) đâu bạn
+- thôi mình không đặt [coca](food) nữa
 
 ## intent:ask_food_in_order
 
@@ -341,7 +343,13 @@
 - Số điện thoại mình là [1234567891](cusPhone)
 - SĐT mình là [9876543211](cusPhone)
 - [1234567899](cusPhone) nha con ơi
-- [1234444441]
+- [1234444441](cusPhone)
+
+- Mình đi lúc [3h chiều](hour) [thứ năm](day) [ngày kia](moment)
+- Cho mình đặt lúc [9h tối](hour) [thứ ba](day) [tuần này](moment)
+- [8h tối](hour) [ngày mai](moment) đi bạn
+- Chắc tầm [7h tối](hour) [thứ 5](day) [tuần sau](moment)
+
 
 ## intent:want_order_table
 
@@ -374,6 +382,7 @@
 - Còn bàn nào trống không mày ?
 - Còn bàn nào trống không ?
 - Còn bàn trống không ?
+- bên bạn còn bàn không ?
 - Còn bàn không ?
 
 ## intent:suggest_order_food
@@ -408,3 +417,11 @@ data/vn-food.txt
 ## lookup:cusName
 data/vn-name.txt
 
+## lookup:day
+data/vn-day.txt
+
+## lookup:hour
+data/vn-hour.txt
+
+## lookup:moment
+data/vn-moment.txt
