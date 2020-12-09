@@ -329,6 +329,8 @@
 - Mình tên [Tùng](cusName) nha
 - Bác tên [Hiếu](cusName) cháu ơi
 - Anh tên [Trưởng](cusName) nha
+- [Tuấn](cusName) b
+- Tôi là [Phong](cusName)
 - [Tuấn Anh](cusName)
 
 - Mình đi [3](quanity) người nhé
@@ -337,18 +339,24 @@
 - mình đi tầm [4](quanity) người
 - Khoảng [6](quanity) người cháu à
 - [2](quanity) người
-- [1](quanity)
-
+- [7](quanity) ng
 
 - Số điện thoại mình là [1234567891](cusPhone)
 - SĐT mình là [9876543211](cusPhone)
 - [1234567899](cusPhone) nha con ơi
 - [1234444441](cusPhone)
+- số mình là [2135423125](cusPhone)
+- phone tôi [2346423542](cusPhone)
+- [1254444441](cusPhone)
 
-- Mình đi lúc [3h chiều](hour) [thứ năm](day) [ngày kia](moment)
-- Cho mình đặt lúc [9h tối](hour) [thứ ba](day) [tuần này](moment)
-- [8h tối](hour) [ngày mai](moment) đi bạn
-- Chắc tầm [7h tối](hour) [thứ 5](day) [tuần sau](moment)
+- Mình đi lúc [3h chiều](hour) 
+- Cho mình đặt lúc [9h tối](hour)
+- [tuần sau](moment) 
+- Chắc tầm [7h tối](hour) 
+- [10h tối](hour) bạn 
+- [thứ 5](day) nhé
+- chắc là [thứ ba](day)
+- [tuần này](moment) đi
 
 
 ## intent:want_order_table
@@ -362,6 +370,7 @@
 - Cho anh đặt [T1](order_table) với em ơi
 - cho mình đặt bàn [T3](order_table) bạn ơi
 - à cho mình đặt bàn [T2](order_table) tiếp nhé 
+- vật cho mình bàn [T2](order_table) đi
 
 ## intent:search_table
 - Cho mình hỏi bên bạn còn bàn [T1](table) không ?
@@ -372,18 +381,18 @@
 - Cho mình hỏi bàn [T2](table) còn không nhỉ ?
 
 ## intent:table_empty
+
 - Cho mình hỏi hiện tại bên mình còn bàn trống không nhỉ ?
-- Bên mình còn bàn trống không nhỉ ?
-- Còn bàn trống không em ?
-- Còn bàn trống không mày ?
+- Cho mình xem các bàn trống vs
 - Còn những bàn nào trống ?
-- Còn những bàn nào còn trống ?
 - Còn bàn nào trống không em ?
-- Còn bàn nào trống không mày ?
+- bạn còn bàn nào trống không nhỉ ?
 - Còn bàn nào trống không ?
 - Còn bàn trống không ?
 - bên bạn còn bàn không ?
 - Còn bàn không ?
+- bên bạn có những mã bàn nào ?
+- cho mình xin mã bàn
 
 ## intent:suggest_order_food
 - Cho mình đặt món với

@@ -43,7 +43,6 @@ entities:
   - moment
 
 slots:
-
    quanity:
     type : list
    food:
@@ -74,9 +73,9 @@ slots:
 responses:
   
   utter_greet:
-   - text: Chào bạn.Chào mừng quý khách đã đến với nhà hàng lẩu MTee Ay
+   - text: Chào {cusName}.Chào mừng quý khách đã đến với nhà hàng lẩu MTee Ay
   utter_goodbye:
-   - text: Chào bạn. Hẹn gặp lại !
+   - text: Chào {cusName}. Hẹn gặp lại !
   utter_affirm:
    - text: Ok rồi nhé bạn !
   utter_deny:
