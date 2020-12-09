@@ -374,6 +374,7 @@
 - Còn bàn nào trống không mày ?
 - Còn bàn nào trống không ?
 - Còn bàn trống không ?
+- Còn bàn không ?
 
 ## intent:suggest_order_food
 - Cho mình đặt món với
