@@ -328,13 +328,13 @@ class RemoveFoodOrder(Action):
         lOrder = json.loads(jsonOrder)
         print(len(lOrder))
         print(max_food.name)
-        for element in lOrder:
-            tOrder-=(element["price"]*element["quanity"])
+
         ## Thuật toán xóa
         i=0
 
         for item in lOrder:
             if item["name"]==max_food.name:
+                tOrder-=(item["price"]*item["quanity"])
                 i+=1
 
         k = len(lOrder)-1
@@ -347,8 +347,8 @@ class RemoveFoodOrder(Action):
         print(lOrder)
         for x in range(i):
          lOrder.pop(0)
-
-                      
+         
+                 
         jsonOrder = json.dumps([item for item in lOrder]) 
         dispatcher.utter_message("Mình đã bỏ "+max_food.name+" cho bạn rồi nhé !") 
 

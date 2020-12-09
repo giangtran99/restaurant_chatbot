@@ -233,6 +233,7 @@
 - Tính tiền em
 - Cho mình xin cái tổng tiền với
 - Chỗ kia hết nhiêu ?
+- cho mình hỏi tổng hết bao nhiêu rồi
 
 ## intent:provided_info_order
 
@@ -307,6 +308,7 @@
 - đừng lấy [thịt bò nhật](food) nữa
 - Thôi không uống [coca](food) nha
 - Thôi mình không uống [lavie](food) đâu bạn
+- thôi mình không đặt [coca](food) nữa
 
 ## intent:ask_food_in_order
 
@@ -341,7 +343,7 @@
 - Số điện thoại mình là [1234567891](cusPhone)
 - SĐT mình là [9876543211](cusPhone)
 - [1234567899](cusPhone) nha con ơi
-- [1234444441]
+- [1234444441](cusPhone)
 
 ## intent:want_order_table
 
